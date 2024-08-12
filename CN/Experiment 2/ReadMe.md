@@ -1,6 +1,6 @@
 # Experiment 2
 This experiment consist of:-
-- [Framing](./Framing.c)
+- [Character Count](./Character_Count.c)
 - [Byte Stuffing](./Byte_Stuffing.c)
 - [Bit Stuffing](./Bit_Stuffing.c)
 
