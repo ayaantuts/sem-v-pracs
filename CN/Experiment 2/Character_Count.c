@@ -11,7 +11,7 @@ int main() {
         scanf("%s", frames[i]);
     }
     for (i = 0; i < no_of_frames; i++) {
-        // Convert the length of the frame to a stream of characters and append it to the frame
+        // Convert the length of the frame to a stream of characters and append it to the final string
         len = (char *)malloc(strlen(frames[i]) + 1);
         sprintf(len, "%lu", strlen(frames[i]));
         strcat(final, len);
