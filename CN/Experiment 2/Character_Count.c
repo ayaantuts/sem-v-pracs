@@ -4,7 +4,7 @@
 char frames[10][50], final[50], *len;
 int no_of_frames;
 int main() {
-    int i, j = 0;
+    int i;
     printf("Enter the number of frames: ");
     scanf("%d", &no_of_frames);
     for (i = 0; i < no_of_frames; i++) {
@@ -16,7 +16,6 @@ int main() {
         sprintf(len, "%lu", strlen(frames[i]));
         strcat(final, len);
         strcat(final, frames[i]);
-        j += strlen(frames[i]);
         free(len);
     }
     puts(final);
