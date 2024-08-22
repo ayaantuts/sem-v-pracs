@@ -25,6 +25,7 @@ int main() {
         final[j++] = string[i];
         // But if we encounter 5 consecutive 1s after a 0, append a 0
         if (count1 == max_sep) {
+            // Printing the position after which a '0' is stuffed
             printf("Inserting '0' after %dth character\n", i);
             final[j++] = '0';
             // Reset count, and check ones boolean
