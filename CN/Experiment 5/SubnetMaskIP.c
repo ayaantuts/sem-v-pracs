@@ -8,10 +8,10 @@ int main() {
 	int i, j, op1, op2;
 	printf("Enter the ip address: ");
 	scanf("%d.%d.%d.%d", &ip[0], &ip[1], &ip[2], &ip[3]);
-	printf("\nEnter the subnet mask: ");
-	scanf("%d.%d.%d.%d", &subnet[0], &subnet[1], &subnet[2], &subnet[3]);
+	//printf("\nEnter the subnet mask: ");
+	//scanf("%d.%d.%d.%d", &subnet[0], &subnet[1], &subnet[2], &subnet[3]);
 	printf("\nEnter the class: ");
-	scanf("%c", &class);
+	scanf("\n%c", &class);
 	switch(class) {
 		case 'A':
 		case 'a':
