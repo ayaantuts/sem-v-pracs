@@ -4,9 +4,9 @@
 2. Framing techniques: Character Count, Byte&Bit Stuffing: [Link](./Experiment%202/ReadMe.md)
 3. Error detection and correction mechanism: CRC and Hamming code: [Link](./Experiment%203/ReadMe.md)
 4. Sliding window protocol: SR and Go-Back-N: [Link](./Experiment%204/ReadMe.md)
-5. Find subnet mask of given IP (optional: subnet mask of given website) [Link](./Experiment%205/ReadMe.md)
+5. Find subnet mask of given IP (optional: subnet mask of given website): [Link](./Experiment%205/ReadMe.md)
 6. To implement DVR and LSR (bellman ford and djikstra)
 7. To implement routing information protocol (RIP) 
 8. Learn about packet capturing using wireshark
 9. Implement flow control using Stop-and-Wait
-10. Implement Leaky bucket and Token bucket algorithm
+10. Implement Leaky bucket and Token bucket algorithm: [Link](./Experiment%2010/ReadMe.md)
