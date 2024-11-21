@@ -5,7 +5,7 @@
 3. Error detection and correction mechanism: CRC and Hamming code: [Link](./Experiment%203/ReadMe.md)
 4. Sliding window protocol: SR and Go-Back-N: [Link](./Experiment%204/ReadMe.md)
 5. Find subnet mask of given IP (optional: subnet mask of given website): [Link](./Experiment%205/ReadMe.md)
-6. To implement DVR and LSR (bellman ford and djikstra)
+6. To implement DVR and LSR (bellman ford and djikstra): [Link](./Experiment%206/ReadMe.md)
 7. To implement routing information protocol (RIP) (No Code)
 8. Learn about packet capturing using wireshark (No Code)
 9. Implement flow control using Stop-and-Wait: [Link](./Experiment%209/ReadMe.md)
