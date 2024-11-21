@@ -10,23 +10,15 @@ int main() {
     scanf("%s", string);
     // Loop over the string
     while (string[i] != '\0') {
-        // checkones acts like a boolean value, we check for 5 consecutive 1s
-        if (checkones)
-            if (string[i] == '1')
-                count1++;
-        // checkones is "set" by a 0, as the flag is 01111110
-        if (string[i] == '0') {
-            checkones = 1;
-            // Reset count, it's important
-            // As there can be 0s between 1s
+        if (string[i] == '1')
+            count1++;
+        else
             count1 = 0;
-        }
-        // We append the character as it is
         final[j++] = string[i];
-        // But if we encounter 5 consecutive 1s after a 0, append a 0
+        // But if we encounter 5 consecutive 1s, append a 0
         if (count1 == max_sep) {
             // Printing the position after which a '0' is stuffed
-            printf("Inserting '0' after %dth character\n", i);
+            printf("Inserting '0' after %dth character\n", i + 1);
             final[j++] = '0';
             // Reset count, and check ones boolean
             count1 = 0;
