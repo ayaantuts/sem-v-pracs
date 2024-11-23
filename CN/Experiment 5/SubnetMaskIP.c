@@ -1,55 +1,55 @@
 #include <stdio.h>
 
-int subnet[4], ip[4];
-int no_of_classes;
+int subnet[4], ip[4], network[4];
+int subnet_octets;
 char class;
 
 int main() {
 	int i, j, op1, op2;
+	char class;
 	printf("Enter the ip address: ");
 	scanf("%d.%d.%d.%d", &ip[0], &ip[1], &ip[2], &ip[3]);
-	//printf("\nEnter the subnet mask: ");
-	//scanf("%d.%d.%d.%d", &subnet[0], &subnet[1], &subnet[2], &subnet[3]);
-	printf("\nEnter the class: ");
-	scanf("\n%c", &class);
+	if (ip[0] >= 1 && ip[0] <= 127)
+		class = 'A';
+	else if (ip[0] >= 128 && ip[0] <= 191)
+		class = 'B';
+	else if (ip[0] >= 192 && ip[0] <= 223)
+		class = 'C';
+	else if (ip[0] >= 224 && ip[0] <= 239)
+		class = 'D';
+	else if (ip[0] >= 240 && ip[0] <= 255)
+		class = 'E';
+	else
+		class = '\0';
+	if (class)
+		printf("The given IP address belongs to Class %c\n", class);
 	switch(class) {
 		case 'A':
-		case 'a':
-			no_of_classes = 1;
+			subnet_octets = 1;
 			break;
 		case 'B':
-		case 'b':
-			no_of_classes = 2;
+			subnet_octets = 2;
 			break;
 		case 'C':
-		case 'c':
-			no_of_classes = 3;
+			subnet_octets = 3;
 			break;
 		case 'D':
-		case 'd':
-			no_of_classes = 4;
+			subnet_octets = 4;
 			break;
+		case 'E':
+			printf("\n--- Special (Reserved) Address! ---\n");
+			return 0;
 		default:
-			printf("\nInvalid input!");
+			printf("Invalid input!\n");
 			return 0;
 	}
-	printf("\nSubnet mask: ");
-	for (i = 0; i < no_of_classes; i++) {
+	for (i = 0; i < subnet_octets; i++)
 		subnet[i] = 255;
-		printf("255");
-		if (i != no_of_classes - 1)
-			printf(".");
-	}
-	for (j = 0; j < 4 - no_of_classes; j++) {
-		subnet[4 - j - 1] = 0;
-		printf(".0");
-	}
-	printf("\nNetwork address: ");
-	for (i = 0; i < 4; i++) {
-		op1 = ip[i] & subnet[i];
-		printf("%d", op1);
-		if (i != 3)
-			printf(".");
-	}
+	for (i = subnet_octets; i < 4; i++)
+		subnet[i] = 0;
+	printf("The subnet mask is %d.%d.%d.%d\n", subnet[0], subnet[1], subnet[2], subnet[3]);
+	for (i = 0; i < 4; i++)
+		network[i] = ip[i] & subnet[i];
+	printf("The network ID is %d.%d.%d.%d\n", network[0], network[1], network[2], network[3]);
 	return 0;
 }

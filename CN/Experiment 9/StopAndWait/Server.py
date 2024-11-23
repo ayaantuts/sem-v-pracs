@@ -3,12 +3,11 @@ import time
 
 HOST = '0.0.0.0'
 PORT = 12345
-Tp = 2
-Tf = .5
+WAIT_TIME = 1
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind((HOST, PORT))
-s.listen(1)
+s.listen()
 conn, addr = s.accept()
 print('Connected by', addr)
 while True:
@@ -17,10 +16,10 @@ while True:
 		break
 	if data.decode() == 'exit':
 		break
+	time.sleep(WAIT_TIME)
 	print(f'Received \'{data.decode()}\'')
-	time.sleep(Tf)
+	time.sleep(WAIT_TIME)
 	print(f'Sent ACK for \'{data.decode()}\'')
-	time.sleep(Tp)
 	conn.sendall(f'ACK for \'{data.decode()}\''.encode())
 
 conn.close()

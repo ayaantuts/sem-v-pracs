@@ -24,24 +24,22 @@ def leaky():
 
 leak_thread = threading.Thread(target=leaky)
 
-def main():
-	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-	s.bind((HOST, PORT))
-	s.listen(1)
-	print('Listening on', PORT)
-	conn, addr = s.accept()
-	print('Connected by', addr)
-	while True:
-		data = conn.recv(1024)
-		if not data or data == b'exit':
-			conn.close()
-			globals().update(continue_leaking=False)
-			break
-		if len(received_data) < MAX_SIZE:
-			received_data.append(data.decode())
-			conn.sendall(f'Received: {data}'.encode())
-		else:
-			conn.sendall(b'Bucket is full')
-
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.bind((HOST, PORT))
+s.listen(1)
+print('Listening on', PORT)
+conn, addr = s.accept()
 leak_thread.start()
-main()
+print('Connected by', addr)
+while True:
+	data = conn.recv(1024)
+	if not data or data == b'exit':
+		conn.close()
+		continue_leaking=False
+		break
+	data = data.decode()
+	if len(received_data) < MAX_SIZE:
+		received_data.append(data)
+		conn.sendall(f'Acknowledge for: {data}'.encode())
+	else:
+		conn.sendall(b'Bucket is full')
