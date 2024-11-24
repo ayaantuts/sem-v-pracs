@@ -14,7 +14,7 @@ def generateParityBits(data, pNum, parity):
 	count = 0
 	check_bit = 2**pNum
 	for i in range(len(data)):
-		if (i + 1) & check_bit:
+		if (len(data) - i) & check_bit:
 			count += int(data[i])
 	return (count % 2) ^ parity
 
