@@ -4,67 +4,55 @@ def calculateParityBits(n):
 		i += 1
 	return i
 
-def generateParityBits(data, pNum, parity):
-	parityBit = 0
-	count = 0
-	for i in range(len(data) + 1):
-		# len(data) - i is the position of parity bit (because we are adding parity bits to the end)
-		if (len(data) - i) & (1 << pNum):
-			if data[i] == 1:
-				count += 1
-	# 0 for even parity, 1 for odd parity, if count and parity are same (even/odd), then parity bit is 0, else 1
-	if parity ^ (count % 2):
-		parityBit = 1
-	return parityBit
+def returnParityBits(n):
+	i = 0
+	while 2**i < n + 1:
+		i += 1
+	return i
 
+def generateParityBits(data, pNum, parity):
+	count = 0
+	check_bit = 2**pNum
+	for i in range(len(data)):
+		if (i + 1) & check_bit:
+			count += int(data[i])
+	return (count % 2) ^ parity
+
+# Generator
 data = input("Enter data: ")
 noOfParity = calculateParityBits(len(data))
 print(f"Number of parity bits required: {noOfParity}")
-parity_pos = [2**i for i in range(noOfParity)]
 parity = int(input("Enter parity (0 for even, 1 for odd): "))
+parity_pos = [2**i for i in range(noOfParity)]
+final = ['0'] * (len(data) + noOfParity)
+j = 1
+for i in range(1, len(final) + 1):
+	if i in parity_pos:  # Check if i is a power of 2
+		continue
+	final[-i] = data[-j]
+	j += 1
 
-final = [0] * (len(data) + noOfParity)
-j = 0
-for i in range(len(final)):
-	if len(final) - i in parity_pos:
-		final[i] = -1
-	else:
-		final[i] = int(data[j])
-		j += 1
-	
 for i in range(noOfParity):
-	final[len(final) - parity_pos[i]] = generateParityBits(final, i, parity)
+	final[-parity_pos[i]] = str(generateParityBits(final, i, parity))
 
-final = [str(i) for i in final]
 print(f"Data with parity bits: {''.join(final)}")
 
-# Example with explanation
-"""
-Given:
-Data = 1011
-Parity = 0 (even)
+# Checker
+received_data = input("Enter received data: ")
+noOfParity = returnParityBits(len(received_data))
+print(f"Number of parity bits: {noOfParity}")
+parity = int(input("Enter parity (0 for even, 1 for odd): "))
+error = 0
 
-Solution:
-Number of parity bits required = 3
+for i in range(noOfParity):
+	if generateParityBits(received_data, i, parity):
+		error += 2**i
 
-Without parity bits:
- 1  | 0  | 1  | _  | 1  | _  | _    (Data)
- D4 | D3 | D2 | P4 | D1 | P2 | P1   (Representation)
- 7  | 6  | 5  | 4  | 3  | 2  | 1    (Position)
- 0  | 1  | 2  | 3  | 4  | 5  | 6    (Indexing)
-
-For P1:
-We check positions which have 1 at 1st bit from right (in binary representation)
-Hence, we check (1, 3, 5, 7)
-
-For P2:
-We check positions which have 1 at 2nd bit from right
-Hence, we check (2, 3, 6, 7)
-
-For P4:
-We check positions which have 1 at 4th bit from right
-Hence, we check (4, 5, 6, 7)
-
-Therefore, P1 = 1, P2 = 0, P4 = 0
-Data with parity bits = 1010101
-"""
+if error:
+	print(f"Error at position {error} (from right)")
+	received_data = list(received_data)
+	received_data[-error] = str(int(received_data[-error]) ^ 1)
+	received_data = ''.join(received_data)
+	print(f"Corrected transmission sequence: {received_data}")
+else:
+	print("No error")
