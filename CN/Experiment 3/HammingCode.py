@@ -4,12 +4,6 @@ def calculateParityBits(n):
 		i += 1
 	return i
 
-def returnParityBits(n):
-	i = 0
-	while 2**i < n + 1:
-		i += 1
-	return i
-
 def generateParityBits(data, check_bit, parity):
 	count = 0
 	for i in range(len(data)):
@@ -47,7 +41,6 @@ print(f"Data with parity bits: {''.join(final)}")
 
 # Checker
 received_data = input("Enter received data: ")
-noOfParity = returnParityBits(len(received_data))
 print(f"Number of parity bits: {noOfParity}")
 parity = int(input("Enter parity (0 for even, 1 for odd): "))
 error = 0
