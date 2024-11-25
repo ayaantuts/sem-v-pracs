@@ -4,7 +4,7 @@ char string[50], final[50];
 int max_sep = 5;
 
 int main() {
-    int i = 0, j = 0, count1 = 0, checkones = 0;
+    int i = 0, j = 0, count1 = 0;
     printf("Enter the Message (binary): ");
     // Input the message
     scanf("%s", string);
@@ -20,9 +20,8 @@ int main() {
             // Printing the position after which a '0' is stuffed
             printf("Inserting '0' after %dth character\n", i + 1);
             final[j++] = '0';
-            // Reset count, and check ones boolean
+            // Reset count
             count1 = 0;
-            checkones = 0;
         }
         i++;
     }
