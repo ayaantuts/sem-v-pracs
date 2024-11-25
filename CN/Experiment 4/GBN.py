@@ -25,6 +25,7 @@ while ack_received < total_seq:
 	for i in window:
 		if not random.choice([True, False]):
 			print(f"Packet lost: {i}")
+			break
 		else:
 			print(f"Acknowledgement received: {i}")
 			ack_received += 1

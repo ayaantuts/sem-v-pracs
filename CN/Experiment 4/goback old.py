@@ -26,6 +26,3 @@ class GoBackN:
                         break
 gbn = GoBackN(window_size=4, total_frames=10)
 gbn.send_frames()
-
-
-

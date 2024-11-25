@@ -27,6 +27,5 @@ while True:
 		print(f'Sent NACK for \'{data.decode()}\'')
 		conn.sendall(f'NACK'.encode())
 
-
 conn.close()
 s.close()
