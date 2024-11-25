@@ -1,5 +1,6 @@
 import socket
 import time
+import random
 
 HOST = '0.0.0.0'
 PORT = 12345
@@ -19,8 +20,13 @@ while True:
 	time.sleep(WAIT_TIME)
 	print(f'Received \'{data.decode()}\'')
 	time.sleep(WAIT_TIME)
-	print(f'Sent ACK for \'{data.decode()}\'')
-	conn.sendall(f'ACK for \'{data.decode()}\''.encode())
+	if random.choice([True, False]):
+		print(f'Sent ACK for \'{data.decode()}\'')
+		conn.sendall(f'ACK'.encode())
+	else:
+		print(f'Sent NACK for \'{data.decode()}\'')
+		conn.sendall(f'NACK'.encode())
+
 
 conn.close()
 s.close()

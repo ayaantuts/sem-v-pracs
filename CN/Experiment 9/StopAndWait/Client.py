@@ -16,6 +16,12 @@ while True:
 	print('Waiting for acknowledgement')
 	time.sleep(1)
 	data = socket.recv(1024)
-	print('Received', data.decode())
+	if data.decode() == 'ACK':
+		print('Received', data.decode())
+	else:
+		while data.decode() == 'NACK':
+			print(f'Resending data {message}')
+			socket.send(message.encode())
+			data = socket.recv(1024)
 
 socket.close()
