@@ -5,8 +5,6 @@ total_seq  = int(input('Enter the sequence numbers: '))
 window_size = total_seq // 2
 
 data = [i for i in range(total_seq)]
-ack = 0
-sent_success = 0
 ack = [False] * total_seq
 ack_received = 0
 window = data[:window_size]
@@ -30,6 +28,3 @@ while ack_received < total_seq:
 			ack_received += 1
 			ack[i] = True
 		time.sleep(1)
-
-	while sent_success < total_seq and ack[sent_success]:
-		sent_success += 1
