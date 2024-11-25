@@ -10,13 +10,21 @@ def returnParityBits(n):
 		i += 1
 	return i
 
-def generateParityBits(data, pNum, parity):
+def generateParityBits(data, check_bit, parity):
 	count = 0
-	check_bit = 2**pNum
 	for i in range(len(data)):
 		if (len(data) - i) & check_bit:
 			count += int(data[i])
-	return (count % 2) ^ parity
+	if parity == 0:
+		if count % 2 == 0:
+			return 0
+		else:
+			return 1
+	else:
+		if count % 2 == 0:
+			return 1
+		else:
+			return 0
 
 # Generator
 data = input("Enter data: ")
@@ -33,7 +41,7 @@ for i in range(1, len(final) + 1):
 	j += 1
 
 for i in range(noOfParity):
-	final[-parity_pos[i]] = str(generateParityBits(final, i, parity))
+	final[-parity_pos[i]] = str(generateParityBits(final, parity_pos[i], parity))
 
 print(f"Data with parity bits: {''.join(final)}")
 
