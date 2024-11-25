@@ -1,5 +1,8 @@
 # Networking commands
 ## Table of Contents
+<details>
+<summary>As a list form</summary>
+
 1. [ipconfig/ifconfig](#1-ipconfigifconfig)
 2. [ping](#2-ping)
 3. [nslookup](#3-nslookup)
@@ -12,6 +15,23 @@
 10. [getmac](#10-getmac)
 11. [pathping](#11-pathping)
 12. [route](#12-route)
+
+</details>
+
+Heading | Link
+-- | --
+Ipconfig | [ipconfig/ifconfig](#1-ipconfigifconfig)
+Ping | [ping](#2-ping)
+Nslookup | [nslookup](#3-nslookup)
+Hostname | [hostname](#4-hostname)
+Netstat | [netstat](#5-netstat)
+Nbtstat | [nbtstat](#6-nbtstat)
+Net | [net](#7-net)
+Tracert | [tracert/traceroute](#8-tracerttraceroute)
+Arp | [arp](#9-arp)
+Getmac | [getmac](#10-getmac)
+Pathping | [pathping](#11-pathping)
+Route | [route](#12-route)
 
 ## 1. `ipconfig/ifconfig`
 - Displays all network configurations across components.
