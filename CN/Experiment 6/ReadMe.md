@@ -1,4 +1,4 @@
-# Experiment 2
+# Experiment 6
 This experiment consist of:-
 - [Djikstra](./Djikstra.c)
 - [Bellman Ford](./BellmanFord.c)
