@@ -1,6 +1,3 @@
-# This code consists of two parts:
-# 1. Sender side: It takes the data and generator polynomial as input and calculates the CRC
-# 2. Receiver side: It takes the received data and generator polynomial as input and checks for errors
 # Sender side:
 data = input('Enter the data: ')
 original_data = data
