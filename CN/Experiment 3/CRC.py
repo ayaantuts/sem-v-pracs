@@ -19,6 +19,8 @@ def calcRemainder(data, generator):
 				data[i] = xor(data[i], generator[i])
 		while data and data[0] == '0':
 			data.pop(0)
+	while len(data) < len(generator) - 1:
+		data.insert(0, '0')
 	return data
 
 remainder = calcRemainder(data, generator)
