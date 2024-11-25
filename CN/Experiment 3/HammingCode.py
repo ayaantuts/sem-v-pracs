@@ -46,8 +46,8 @@ parity = int(input("Enter parity (0 for even, 1 for odd): "))
 error = 0
 
 for i in range(noOfParity):
-	if generateParityBits(received_data, i, parity):
-		error += 2**i
+	if generateParityBits(received_data, parity_pos[i], parity):
+		error += parity_pos[i]
 
 if error:
 	print(f"Error at position {error} (from right)")
