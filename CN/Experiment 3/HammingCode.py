@@ -52,7 +52,7 @@ for i in range(noOfParity):
 if error:
 	print(f"Error at position {error} (from right)")
 	received_data = list(received_data)
-	received_data[-error] = '0' if int(received_data[-error]) == 1 else '1'
+	received_data[-error] = '0' if received_data[-error] == '1' else '1'
 	received_data = ''.join(received_data)
 	print(f"Corrected transmission sequence: {received_data}")
 else:
