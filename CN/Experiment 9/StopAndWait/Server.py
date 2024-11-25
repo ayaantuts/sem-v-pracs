@@ -4,7 +4,6 @@ import random
 
 HOST = '0.0.0.0'
 PORT = 12345
-WAIT_TIME = 1
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind((HOST, PORT))
@@ -13,19 +12,16 @@ conn, addr = s.accept()
 print('Connected by', addr)
 while True:
 	data = conn.recv(1024)
-	if not data:
+	if not data or data.decode() == 'exit':
+		print("Client has closed connection")
+		conn.close()
 		break
-	if data.decode() == 'exit':
-		break
-	time.sleep(WAIT_TIME)
-	print(f'Received \'{data.decode()}\'')
-	time.sleep(WAIT_TIME)
+	time.sleep(1)
 	if random.choice([True, False]):
 		print(f'Sent ACK for \'{data.decode()}\'')
 		conn.sendall(f'ACK'.encode())
 	else:
-		print(f'Sent NACK for \'{data.decode()}\'')
+		print('Data lost: Sending NACK')
 		conn.sendall(f'NACK'.encode())
 
-conn.close()
 s.close()
